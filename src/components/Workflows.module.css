@@ -416,52 +416,143 @@
 }
 
 @media (max-width: 768px) {
-    .detailMeta {
-        grid-template-columns: 1fr;
+
+    /* --- Mobile System Map Container --- */
+    .systemMapContainer {
+        padding: 1.5rem 1rem 2rem;
+        gap: 0;
+        border-radius: var(--radius-md);
     }
 
+    .systemMapHeader {
+        text-align: center;
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* --- Two-Row Rail Layout --- */
     .railWrapper {
-        justify-content: flex-start;
-        padding-bottom: 1rem;
-        /* Ensure touch scrolling works smoothly */
-        -webkit-overflow-scrolling: touch;
-        scroll-snap-type: x mandatory;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem 0.5rem;
+        justify-items: center;
+        overflow-x: visible;
+        padding: 0;
+        margin-bottom: 2rem;
     }
 
+    /* Each node group becomes a grid cell, no inline flex */
     .railNodeGroup {
-        scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
+    /* Row 2 nodes (Evaluate & Prototype) — center across 3 cols */
+    .railNodeGroup:nth-child(4) {
+        grid-column: 1 / 2;
+        justify-self: end;
+        padding-right: 1rem;
+    }
+
+    .railNodeGroup:nth-child(5) {
+        grid-column: 2 / 3;
+        justify-self: start;
+        padding-left: 1rem;
+    }
+
+    /* Hide horizontal connectors on mobile */
+    .connector {
+        display: none;
+    }
+
+    /* Smaller node icons on mobile */
+    .nodeIcon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .nodeLabel {
+        font-size: 0.75rem;
+    }
+
+    .gateBadge {
+        font-size: 0.6rem;
+        top: -8px;
+        right: -8px;
+    }
+
+    /* --- Branching Outputs --- */
+    .outputsBranching {
+        margin-top: 0;
+        margin-bottom: 2rem;
+    }
+
+    /* Hide the complex branch lines on mobile, replace with a simple divider */
     .branchLines {
-        width: 100%;
-        max-width: 300px;
+        width: 2px;
+        height: 24px;
+        background: var(--border-color);
+        overflow: hidden;
+    }
+
+    .branchLines::before,
+    .branchLines::after {
+        display: none;
+    }
+
+    .branchLinesGrid {
+        display: none;
     }
 
     .outputNodes {
         flex-direction: column;
         align-items: center;
         gap: 0.75rem;
+        width: 100%;
+        padding: 0 0.5rem;
     }
 
     .outputCard {
         width: 100%;
-        max-width: 250px;
+        max-width: 280px;
+        text-align: center;
+        font-size: 0.85rem;
+        padding: 0.75rem 1rem;
     }
 
-    .systemMapContainer {
-        padding: 2rem 1rem;
-    }
-
-    .detailPanel {
-        padding: 1.5rem;
-        min-height: 380px;
-        /* More stable height on mobile */
-        transition: opacity 0.3s ease;
-    }
-
+    /* --- System State Label --- */
     .systemState {
         font-size: 0.7rem;
         padding: 0.5rem 0.75rem;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+        max-width: 100%;
+    }
+
+    /* --- Detail Panel --- */
+    .detailPanel {
+        padding: 1.5rem;
+        min-height: 340px;
+        max-width: 100%;
+        transition: opacity 0.3s ease;
+    }
+
+    .detailPanel h3 {
+        font-size: 1.25rem;
+    }
+
+    .detailDesc {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .detailMeta {
+        grid-template-columns: 1fr;
+    }
+
+    .detailStage {
+        font-size: 0.8rem;
     }
 }
 
