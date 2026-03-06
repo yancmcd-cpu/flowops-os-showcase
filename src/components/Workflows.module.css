@@ -438,7 +438,7 @@
         justify-items: center;
         overflow-x: visible;
         padding: 0;
-        margin-bottom: 2rem;
+        margin-bottom: 2.5rem;
     }
 
     /* Each node group becomes a grid cell, no inline flex */
@@ -484,14 +484,14 @@
 
     /* --- Branching Outputs --- */
     .outputsBranching {
-        margin-top: 0;
-        margin-bottom: 2rem;
+        margin-top: 0.5rem;
+        margin-bottom: 2.5rem;
     }
 
     /* Hide the complex branch lines on mobile, replace with a simple divider */
     .branchLines {
         width: 2px;
-        height: 24px;
+        height: 32px;
         background: var(--border-color);
         overflow: hidden;
     }
@@ -508,7 +508,7 @@
     .outputNodes {
         flex-direction: column;
         align-items: center;
-        gap: 0.75rem;
+        gap: 1rem;
         width: 100%;
         padding: 0 0.5rem;
     }
@@ -518,22 +518,22 @@
         max-width: 280px;
         text-align: center;
         font-size: 0.85rem;
-        padding: 0.75rem 1rem;
+        padding: 0.85rem 1.25rem;
     }
 
     /* --- System State Label --- */
     .systemState {
         font-size: 0.7rem;
-        padding: 0.5rem 0.75rem;
-        margin-top: 0.5rem;
-        margin-bottom: 1rem;
+        padding: 0.6rem 0.85rem;
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
         max-width: 100%;
     }
 
     /* --- Detail Panel --- */
     .detailPanel {
-        padding: 1.5rem;
-        min-height: 340px;
+        padding: 1.75rem;
+        min-height: 360px;
         max-width: 100%;
         transition: opacity 0.3s ease;
     }
