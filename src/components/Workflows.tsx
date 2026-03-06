@@ -370,7 +370,10 @@ export default function Workflows() {
     return (
         <section id="workflows" className={`section ${styles.workflowsSection}`}>
             <div className="container">
-                <div className={styles.header}>
+                <div className={`${styles.header} animate-on-scroll`}>
+                    <span className={styles.eyebrow}>
+                        {language === 'en' ? 'Workflow Engine' : 'กลไกเวิร์กโฟลว์'}
+                    </span>
                     <h2>{t.opsWorkflows}</h2>
                     <p className="gradient-text" style={{ fontSize: '1.1rem' }}>
                         {t.opsDesc}

@@ -18,8 +18,19 @@
 .sequenceText {
     font-size: 0.95rem;
     color: var(--text-secondary);
-    margin-top: 1rem;
+    margin-top: 2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     font-weight: 500;
+}
+
+.eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    display: block;
 }
 
 /* --- System Map Rail --- */
@@ -412,10 +423,18 @@
     .railWrapper {
         justify-content: flex-start;
         padding-bottom: 1rem;
+        /* Ensure touch scrolling works smoothly */
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+    }
+
+    .railNodeGroup {
+        scroll-snap-align: start;
     }
 
     .branchLines {
         width: 100%;
+        max-width: 300px;
     }
 
     .outputNodes {
@@ -426,7 +445,7 @@
 
     .outputCard {
         width: 100%;
-        max-width: 200px;
+        max-width: 250px;
     }
 
     .systemMapContainer {
@@ -435,6 +454,14 @@
 
     .detailPanel {
         padding: 1.5rem;
+        min-height: 380px;
+        /* More stable height on mobile */
+        transition: opacity 0.3s ease;
+    }
+
+    .systemState {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.75rem;
     }
 }
 

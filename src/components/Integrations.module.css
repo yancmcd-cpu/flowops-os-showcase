@@ -158,6 +158,15 @@
     line-height: 1.6;
 }
 
+.eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
 @media (max-width: 768px) {
     .deliveryContainer {
         padding: 3rem 1.5rem;
@@ -165,5 +174,10 @@
 
     .closingStatement {
         font-size: 1.1rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        /* Single column on small screens */
     }
 }

@@ -96,9 +96,12 @@ export default function Integrations() {
     const tools = TOOLS_DATA[language as keyof typeof TOOLS_DATA];
 
     return (
-        <section className={`section ${styles.integrationsSection}`}>
+        <section className={`section ${styles.integrationsSection}`} id="infrastructure">
             <div className="container">
-                <div className={styles.header}>
+                <div className={`${styles.header} animate-on-scroll`}>
+                    <span className={styles.eyebrow}>
+                        {language === 'en' ? 'Infrastructure Layer' : 'โครงสร้างพื้นฐาน'}
+                    </span>
                     <h2>{t.infraTitle}</h2>
                     <p className="gradient-text">{t.infraSubtitle}</p>
                 </div>
@@ -120,7 +123,10 @@ export default function Integrations() {
                 </div>
 
                 {/* How FlowOps Delivers Section */}
-                <div className={styles.deliveryContainer}>
+                <div className={`${styles.deliveryContainer} animate-on-scroll`}>
+                    <span className={styles.eyebrow}>
+                        {language === 'en' ? 'Execution Layer' : 'ระบบการทำงาน'}
+                    </span>
                     <h3>{t.deliversTitle}</h3>
 
                     <div className={styles.deliveryGrid}>

@@ -116,10 +116,13 @@ export default function Radar() {
         <section className={`section ${styles.radarSection}`}>
             <div className={`container ${styles.containerExt}`}>
 
-                <div className={styles.header}>
+                <div className={`${styles.header} animate-on-scroll`}>
                     <div className={styles.radarIconWrap}>
                         <ScanEye size={32} className={styles.iconScan} />
                     </div>
+                    <span className={styles.eyebrow}>
+                        {language === 'en' ? 'Detection Layer' : 'ระบบตรวจจับโอกาส'}
+                    </span>
                     <h2>{t.radarTitle}</h2>
                     <p className="gradient-text">
                         {t.radarSubtitle}<br />

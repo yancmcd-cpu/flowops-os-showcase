@@ -30,6 +30,15 @@
     margin-bottom: 2.5rem;
 }
 
+.eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
 .operatorProfile {
     display: flex;
     align-items: center;

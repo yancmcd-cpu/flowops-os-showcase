@@ -481,6 +481,8 @@
     .dataOutputContainer {
         flex-direction: column;
         align-items: center;
+        gap: 2.5rem;
+        /* Better spacing between items */
     }
 
     .opportunityCardContainer {
@@ -504,5 +506,27 @@
         width: 100%;
         margin-top: 1rem;
         min-height: auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .header h2 {
+        font-size: 2rem;
+    }
+
+    .radarSection {
+        padding: 5rem 0;
+    }
+
+    .radarCore,
+    .ring3 {
+        width: 250px;
+        height: 250px;
+    }
+
+    .cardMeta {
+        flex-direction: column;
+        /* Stack meta items vertically on very small screens */
+        gap: 1rem;
     }
 }

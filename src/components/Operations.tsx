@@ -49,10 +49,15 @@ export default function Operations() {
 
                     {/* Left Column: Context & Dana Avatar */}
                     <div className={styles.contextPanel}>
-                        <h2>{t.title}</h2>
-                        <p className={`gradient-text ${styles.subtitle}`}>
-                            {t.subtitle}
-                        </p>
+                        <div className={`animate-on-scroll`}>
+                            <span className={styles.eyebrow}>
+                                {language === 'en' ? 'Memory Layer' : 'ระบบความจำ'}
+                            </span>
+                            <h2>{t.title}</h2>
+                            <p className={`gradient-text ${styles.subtitle}`}>
+                                {t.subtitle}
+                            </p>
+                        </div>
 
                         <div className={styles.operatorProfile}>
                             <div className={styles.avatarWrapper}>

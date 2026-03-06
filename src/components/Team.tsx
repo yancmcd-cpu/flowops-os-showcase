@@ -152,7 +152,10 @@ export default function Team() {
     return (
         <section className={`section ${styles.teamSection}`}>
             <div className="container">
-                <div className={styles.header}>
+                <div className={`${styles.header} animate-on-scroll`}>
+                    <span className={styles.eyebrow}>
+                        {language === 'en' ? 'Specialist Roles' : 'ทีมผู้เชี่ยวชาญเฉพาะด้าน'}
+                    </span>
                     <h2>{t.title}</h2>
                     <p className="gradient-text">{t.subtitle}</p>
                 </div>
