@@ -1,0 +1,503 @@
+﻿.section {
+  position: relative;
+  min-height: 100vh;
+  padding: clamp(6rem, 10vw, 8.5rem) 0 clamp(6rem, 9vw, 8rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background:
+    radial-gradient(circle at 24% 38%, rgba(99, 102, 241, 0.08), transparent 34%),
+    radial-gradient(circle at 74% 58%, rgba(34, 211, 238, 0.06), transparent 36%),
+    #010204;
+  color: #f8fafc;
+}
+
+.container {
+  width: min(1360px, calc(100vw - 88px));
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  max-width: 840px;
+  margin: 0 auto clamp(3.4rem, 5vw, 4.8rem);
+  text-align: center;
+}
+
+.sectionEyebrow,
+.panelEyebrow,
+.blockHeader {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.sectionEyebrow {
+  color: #818cf8;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: clamp(3rem, 5.6vw, 5.35rem);
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+
+.sectionDescription {
+  margin: 1.25rem auto 0;
+  max-width: 780px;
+  color: rgba(226, 232, 240, 0.72);
+  line-height: 1.6;
+  font-size: 1.04rem;
+}
+
+.sectionBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(380px, 0.9fr);
+  gap: clamp(2.5rem, 4vw, 4.2rem);
+  align-items: center;
+}
+
+.roleMapShell {
+  position: relative;
+}
+
+.roleMapLabel,
+.workflowPanelHeader {
+  margin-bottom: 1.3rem;
+}
+
+.panelEyebrow {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.panelSupport {
+  margin: 0.72rem 0 0;
+  max-width: 520px;
+  color: rgba(203, 213, 225, 0.64);
+  line-height: 1.6;
+  font-size: 0.98rem;
+}
+
+.roleMap {
+  position: relative;
+  min-height: 700px;
+  border-radius: 36px;
+  background: linear-gradient(180deg, rgba(9, 12, 22, 0.52), rgba(3, 5, 10, 0.18));
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.roleMap::before {
+  content: "";
+  position: absolute;
+  inset: 10% 14%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.08), transparent 62%);
+  filter: blur(18px);
+  pointer-events: none;
+}
+
+.roleConnections {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.connectionLine {
+  stroke: rgba(148, 163, 184, 0.24);
+  stroke-width: 0.22;
+  vector-effect: non-scaling-stroke;
+}
+
+.connectionLineActive {
+  stroke: var(--role-accent);
+  stroke-opacity: 0.78;
+}
+
+.solutionHub {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hubCore {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 30%, rgba(129, 140, 248, 0.34), transparent 38%),
+    linear-gradient(180deg, rgba(18, 25, 41, 0.96), rgba(6, 9, 17, 0.98));
+  border: 1px solid rgba(129, 140, 248, 0.28);
+  box-shadow: 0 0 48px rgba(99, 102, 241, 0.18), inset 0 0 28px rgba(34, 211, 238, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hubCore::before,
+.hubCore::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  inset: 10px;
+  border: 1px solid rgba(34, 211, 238, 0.14);
+}
+
+.hubCore::after {
+  inset: -12px;
+  border-color: rgba(129, 140, 248, 0.12);
+}
+
+.hubLabelTop,
+.hubLabelBottom {
+  display: block;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hubLabelTop {
+  font-size: 0.78rem;
+  color: rgba(226, 232, 240, 0.86);
+}
+
+.hubLabelBottom {
+  margin-top: 0.4rem;
+  font-size: 1rem;
+  color: #67e8f9;
+}
+
+.roleNode {
+  position: absolute;
+  width: 122px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  text-align: center;
+}
+
+.roleThumbFrame {
+  width: 78px;
+  height: 78px;
+  padding: 4px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(14, 18, 30, 0.96), rgba(6, 9, 16, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.35);
+}
+
+.roleThumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 19px;
+  display: block;
+}
+
+.roleMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.22rem;
+}
+
+.roleName {
+  font-size: 0.86rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(248, 250, 252, 0.9);
+}
+
+.roleTitle {
+  font-size: 0.68rem;
+  line-height: 1.45;
+  color: rgba(148, 163, 184, 0.72);
+}
+
+.roleNodeActive .roleThumbFrame {
+  border-color: var(--role-accent);
+  box-shadow: 0 0 28px rgba(255, 255, 255, 0.08), 0 18px 34px rgba(0, 0, 0, 0.42);
+}
+
+.roleNodeActive .roleName {
+  color: white;
+}
+
+.roleNodeActive .roleTitle {
+  color: var(--role-accent);
+}
+
+.workflowPanel {
+  position: relative;
+  padding: 1.7rem;
+  border-radius: 30px;
+  background: linear-gradient(180deg, rgba(11, 16, 28, 0.95), rgba(5, 7, 14, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+}
+
+.workflowTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.72rem;
+  margin-bottom: 1.35rem;
+}
+
+.workflowTab {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(226, 232, 240, 0.76);
+  border-radius: 999px;
+  padding: 0.7rem 0.98rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+
+.workflowTab:hover {
+  transform: translateY(-1px);
+  color: white;
+}
+
+.workflowTabActive {
+  border-color: var(--workflow-accent);
+  background: rgba(255, 255, 255, 0.06);
+  color: white;
+}
+
+.workflowSummary {
+  margin-bottom: 1.4rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.workflowTitle {
+  margin: 0;
+  font-size: 1.58rem;
+  line-height: 1.1;
+}
+
+.workflowSummaryText {
+  margin: 0.75rem 0 0;
+  color: rgba(203, 213, 225, 0.74);
+  line-height: 1.6;
+  font-size: 0.98rem;
+}
+
+.workflowBlock + .workflowBlock {
+  margin-top: 1.35rem;
+}
+
+.blockHeader {
+  margin-bottom: 0.82rem;
+  color: var(--workflow-accent);
+}
+
+.activeRoleChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.activeRoleChip {
+  display: flex;
+  align-items: center;
+  gap: 0.72rem;
+  min-width: 0;
+  padding: 0.6rem 0.72rem;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.activeRoleThumb {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 14px;
+  flex-shrink: 0;
+}
+
+.activeRoleText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.activeRoleName {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: white;
+}
+
+.activeRoleTitle {
+  font-size: 0.64rem;
+  color: rgba(148, 163, 184, 0.72);
+}
+
+.skillsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.skillItem {
+  position: relative;
+  padding: 0.75rem 0.9rem 0.75rem 1.7rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.025);
+  color: rgba(226, 232, 240, 0.84);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.skillItem::before {
+  content: "";
+  position: absolute;
+  left: 0.78rem;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--workflow-accent);
+  transform: translateY(-50%);
+}
+
+.outputGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.78rem;
+}
+
+.outputCard {
+  min-height: 92px;
+  padding: 1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+  color: rgba(248, 250, 252, 0.88);
+  font-weight: 600;
+  line-height: 1.45;
+  display: flex;
+  align-items: flex-start;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    width: min(1240px, calc(100vw - 72px));
+  }
+
+  .sectionBody {
+    grid-template-columns: 1fr;
+  }
+
+  .roleMap {
+    min-height: 640px;
+  }
+}
+
+@media (max-width: 760px) {
+  .section {
+    padding: 5rem 0 5.25rem;
+  }
+
+  .container {
+    width: calc(100vw - 32px);
+  }
+
+  .sectionHeader {
+    margin-bottom: 2.6rem;
+  }
+
+  .panelSupport {
+    font-size: 0.92rem;
+  }
+
+  .roleMap {
+    min-height: 560px;
+  }
+
+  .solutionHub {
+    width: 126px;
+    height: 126px;
+  }
+
+  .hubLabelTop {
+    font-size: 0.7rem;
+  }
+
+  .hubLabelBottom {
+    font-size: 0.86rem;
+  }
+
+  .roleNode {
+    width: 92px;
+    left: calc(var(--role-mobile-x) * 1%) !important;
+    top: calc(var(--role-mobile-y) * 1%) !important;
+  }
+
+  .roleThumbFrame {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+  }
+
+  .roleThumb {
+    border-radius: 14px;
+  }
+
+  .roleName {
+    font-size: 0.72rem;
+  }
+
+  .roleTitle {
+    display: none;
+  }
+
+  .workflowPanel {
+    padding: 1.2rem;
+    border-radius: 24px;
+  }
+
+  .workflowTabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.15rem;
+  }
+
+  .workflowTabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .workflowTab {
+    white-space: nowrap;
+  }
+
+  .activeRoleChips {
+    gap: 0.55rem;
+  }
+
+  .activeRoleChip {
+    flex: 1 1 calc(50% - 0.55rem);
+  }
+
+  .outputGrid {
+    grid-template-columns: 1fr;
+  }
+}
