@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import LenisProvider from '@/components/LenisProvider';
 import { LanguageProvider } from '@/components/LanguageContext';
 import './globals.css';
 
@@ -15,8 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <LenisProvider />
         <LanguageProvider>
-          <main className="container">
+          <main>
             {children}
           </main>
         </LanguageProvider>

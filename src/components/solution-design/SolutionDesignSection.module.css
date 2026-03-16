@@ -1,29 +1,45 @@
-﻿.section {
+.section {
   position: relative;
-  min-height: 100vh;
-  padding: clamp(6rem, 10vw, 8.5rem) 0 clamp(6rem, 9vw, 8rem);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  min-height: auto;
+  padding: clamp(3.15rem, 4.2vw, 4rem) 0 clamp(4.75rem, 6vw, 5.75rem);
   background:
     radial-gradient(circle at 24% 38%, rgba(99, 102, 241, 0.08), transparent 34%),
     radial-gradient(circle at 74% 58%, rgba(34, 211, 238, 0.06), transparent 36%),
-    #010204;
+    linear-gradient(180deg, #010204 0%, rgba(3, 5, 11, 1) 100%);
   color: #f8fafc;
 }
 
 .container {
   width: min(1360px, calc(100vw - 88px));
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .sectionHeader {
-  max-width: 840px;
-  margin: 0 auto clamp(3.4rem, 5vw, 4.8rem);
+  max-width: 980px;
+  margin: 0 auto clamp(1.1rem, 2.2vw, 1.55rem);
   text-align: center;
+}
+
+.sectionIconWrap {
+  width: 62px;
+  height: 62px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.035);
+  color: #818cf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.95rem;
+  border: 1px solid rgba(129, 140, 248, 0.38);
+  box-shadow: 0 0 30px rgba(129, 140, 248, 0.14);
 }
 
 .sectionEyebrow,
 .panelEyebrow,
-.blockHeader {
+.blockHeader,
+.roleSpotlightEyebrow {
   display: inline-flex;
   align-items: center;
   font-size: 0.72rem;
@@ -39,28 +55,66 @@
 
 .sectionTitle {
   margin: 0;
-  font-size: clamp(3rem, 5.6vw, 5.35rem);
-  line-height: 0.98;
+  font-size: clamp(2.85rem, 4.7vw, 4.8rem);
+  line-height: 1;
   letter-spacing: -0.06em;
+  white-space: nowrap;
 }
 
 .sectionDescription {
-  margin: 1.25rem auto 0;
-  max-width: 780px;
+  margin: 1rem auto 0;
+  max-width: 900px;
   color: rgba(226, 232, 240, 0.72);
   line-height: 1.6;
-  font-size: 1.04rem;
+  font-size: 1rem;
 }
 
 .sectionBody {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(380px, 0.9fr);
-  gap: clamp(2.5rem, 4vw, 4.2rem);
-  align-items: center;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 4vw, 3rem);
+  align-items: stretch;
 }
 
 .roleMapShell {
   position: relative;
+  width: min(1100px, 100%);
+  min-height: auto;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.roleExpandHint {
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 1rem;
+  padding: 0.48rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(103, 232, 249, 0.12);
+  background: linear-gradient(180deg, rgba(9, 14, 24, 0.72), rgba(5, 8, 16, 0.82));
+  color: rgba(203, 213, 225, 0.68);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  box-shadow: 0 0 18px rgba(34, 211, 238, 0.08);
+}
+
+.roleExpandHintDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #67e8f9;
+  box-shadow: 0 0 12px rgba(103, 232, 249, 0.7);
+  animation: roleHintPulse 2.8s ease-in-out infinite;
+}
+
+.roleExpandHintMobile {
+  display: none;
 }
 
 .roleMapLabel,
@@ -74,7 +128,7 @@
 
 .panelSupport {
   margin: 0.72rem 0 0;
-  max-width: 520px;
+  max-width: 560px;
   color: rgba(203, 213, 225, 0.64);
   line-height: 1.6;
   font-size: 0.98rem;
@@ -82,21 +136,38 @@
 
 .roleMap {
   position: relative;
-  min-height: 700px;
+  width: 100%;
+  min-height: clamp(560px, 64vh, 720px);
+  aspect-ratio: auto;
   border-radius: 36px;
-  background: linear-gradient(180deg, rgba(9, 12, 22, 0.52), rgba(3, 5, 10, 0.18));
+  background: linear-gradient(180deg, rgba(9, 12, 22, 0.66), rgba(3, 5, 10, 0.32));
   border: 1px solid rgba(255, 255, 255, 0.05);
   overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 28px 70px rgba(0, 0, 0, 0.18);
+}
+
+.roleMap::before,
+.roleMap::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
 }
 
 .roleMap::before {
-  content: "";
-  position: absolute;
   inset: 10% 14%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.08), transparent 62%);
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.09), transparent 62%);
   filter: blur(18px);
-  pointer-events: none;
+}
+
+.roleMap::after {
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 56px 56px;
+  opacity: 0.12;
+  mask-image: radial-gradient(circle at 50% 54%, black 35%, transparent 78%);
 }
 
 .roleConnections {
@@ -107,15 +178,25 @@
   overflow: visible;
 }
 
-.connectionLine {
-  stroke: rgba(148, 163, 184, 0.24);
-  stroke-width: 0.22;
+.connectionLineTrack {
+  stroke: rgba(255, 255, 255, 0.06);
+  stroke-width: 0.74;
   vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+}
+
+.connectionLine {
+  stroke: rgba(148, 163, 184, 0.18);
+  stroke-width: 0.26;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+  transition: stroke 0.3s ease, stroke-opacity 0.3s ease, filter 0.3s ease;
 }
 
 .connectionLineActive {
   stroke: var(--role-accent);
-  stroke-opacity: 0.78;
+  stroke-opacity: 0.72;
+  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--role-accent) 35%, transparent));
 }
 
 .solutionHub {
@@ -128,21 +209,30 @@
   justify-content: center;
 }
 
+.hubPulseRing {
+  position: absolute;
+  inset: -18px;
+  border-radius: 50%;
+  border: 1px solid rgba(103, 232, 249, 0.18);
+  animation: hubPulse 0.9s ease-out both;
+}
+
 .hubCore {
   position: relative;
   width: 100%;
   height: 100%;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 32% 30%, rgba(129, 140, 248, 0.34), transparent 38%),
-    linear-gradient(180deg, rgba(18, 25, 41, 0.96), rgba(6, 9, 17, 0.98));
+    radial-gradient(circle at 32% 30%, rgba(129, 140, 248, 0.4), transparent 38%),
+    linear-gradient(180deg, rgba(18, 25, 41, 0.97), rgba(6, 9, 17, 0.99));
   border: 1px solid rgba(129, 140, 248, 0.28);
-  box-shadow: 0 0 48px rgba(99, 102, 241, 0.18), inset 0 0 28px rgba(34, 211, 238, 0.08);
+  box-shadow: 0 0 64px rgba(99, 102, 241, 0.22), inset 0 0 42px rgba(34, 211, 238, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+  animation: engineCorePulse 5.8s ease-in-out infinite;
 }
 
 .hubCore::before,
@@ -150,13 +240,17 @@
   content: "";
   position: absolute;
   border-radius: 50%;
+}
+
+.hubCore::before {
   inset: 10px;
   border: 1px solid rgba(34, 211, 238, 0.14);
 }
 
 .hubCore::after {
-  inset: -12px;
-  border-color: rgba(129, 140, 248, 0.12);
+  inset: -13px;
+  border: 1px solid rgba(129, 140, 248, 0.12);
+  animation: hubOrbit 18s linear infinite;
 }
 
 .hubLabelTop,
@@ -180,37 +274,72 @@
 
 .roleNode {
   position: absolute;
-  width: 122px;
+  width: 144px;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.85rem;
   text-align: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.35s ease, opacity 0.35s ease, filter 0.35s ease;
 }
 
 .roleThumbFrame {
-  width: 78px;
-  height: 78px;
-  padding: 4px;
-  border-radius: 24px;
-  background: linear-gradient(180deg, rgba(14, 18, 30, 0.96), rgba(6, 9, 16, 0.98));
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.35);
+  position: relative;
+  width: 102px;
+  height: 102px;
+  padding: 7px;
+  border-radius: 32px;
+  background: linear-gradient(180deg, rgba(18, 24, 38, 0.98), rgba(8, 11, 20, 0.98));
+  border: 1px solid color-mix(in srgb, var(--role-accent) 26%, rgba(255, 255, 255, 0.1));
+  box-shadow:
+    0 18px 34px rgba(0, 0, 0, 0.35),
+    0 0 12px rgba(103, 232, 249, 0.08),
+    0 0 22px color-mix(in srgb, var(--role-accent) 16%, transparent);
+  overflow: hidden;
+  animation: thumbFloat 4.8s ease-in-out infinite, thumbGlowPulse 3.6s ease-in-out infinite, thumbAttentionLoop 12.4s ease-in-out infinite;
+  animation-delay: var(--role-float-delay, 0s), var(--role-float-delay, 0s), var(--role-loop-delay, 0s);
+}
+
+.roleThumbFrame::before,
+.roleThumbFrame::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.roleThumbFrame::before {
+  inset: 3px;
+  border-radius: 26px;
+  border: 1px solid color-mix(in srgb, var(--role-accent) 20%, rgba(255, 255, 255, 0.06));
+}
+
+.roleThumbFrame::after {
+  inset: -1px;
+  border-radius: 32px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 36%, transparent 68%, color-mix(in srgb, var(--role-accent) 22%, transparent));
+  opacity: 0.96;
+  animation: thumbSheen 7.8s ease-in-out infinite;
+  animation-delay: var(--role-loop-delay, 0s);
 }
 
 .roleThumb {
+  position: relative;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 19px;
+  border-radius: 22px;
   display: block;
 }
 
 .roleMeta {
   display: flex;
   flex-direction: column;
-  gap: 0.22rem;
+  gap: 0.24rem;
 }
 
 .roleName {
@@ -218,18 +347,51 @@
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(248, 250, 252, 0.9);
+  color: rgba(248, 250, 252, 0.92);
 }
 
 .roleTitle {
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   line-height: 1.45;
-  color: rgba(148, 163, 184, 0.72);
+  color: rgba(148, 163, 184, 0.62);
+}
+
+.roleNode:not(.roleNodeActive) {
+  opacity: 0.92;
+  filter: saturate(1);
+}
+
+.roleNode:hover,
+.roleNode:focus-visible {
+  transform: translate(-50%, -50%) scale(1.035);
+}
+
+.roleNode:hover .roleThumbFrame,
+.roleNode:focus-visible .roleThumbFrame {
+  border-color: color-mix(in srgb, var(--role-accent) 62%, rgba(255,255,255,0.18));
+  box-shadow: 0 0 32px color-mix(in srgb, var(--role-accent) 28%, transparent), 0 22px 38px rgba(0, 0, 0, 0.42);
+}
+
+.roleNode:hover .roleThumbFrame::after,
+.roleNode:focus-visible .roleThumbFrame::after {
+  opacity: 1;
+}
+
+.roleNode:focus-visible,
+.workflowTab:focus-visible,
+.activeRoleChip:focus-visible,
+.roleSpotlightClose:focus-visible {
+  outline: 2px solid rgba(103, 232, 249, 0.6);
+  outline-offset: 4px;
+}
+
+.roleNodeActive {
+  transform: translate(-50%, -50%) scale(1.04);
 }
 
 .roleNodeActive .roleThumbFrame {
-  border-color: var(--role-accent);
-  box-shadow: 0 0 28px rgba(255, 255, 255, 0.08), 0 18px 34px rgba(0, 0, 0, 0.42);
+  border-color: color-mix(in srgb, var(--role-accent) 60%, rgba(255,255,255,0.22));
+  box-shadow: 0 0 26px color-mix(in srgb, var(--role-accent) 20%, transparent), 0 18px 34px rgba(0, 0, 0, 0.42);
 }
 
 .roleNodeActive .roleName {
@@ -237,23 +399,251 @@
 }
 
 .roleNodeActive .roleTitle {
-  color: var(--role-accent);
+  color: color-mix(in srgb, var(--role-accent) 72%, white 20%);
+}
+
+.roleNodeSelected {
+  z-index: 3;
+}
+
+.roleNodeSelected .roleThumbFrame {
+  border-color: color-mix(in srgb, var(--role-accent) 72%, white 16%);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--role-accent) 34%, transparent), 0 0 28px color-mix(in srgb, var(--role-accent) 28%, transparent), 0 18px 34px rgba(0, 0, 0, 0.42);
+}
+
+.roleSpotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.6rem;
+}
+
+.roleSpotlightBackdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: linear-gradient(180deg, rgba(2, 4, 9, 0.1), rgba(2, 4, 9, 0.56));
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+}
+
+.roleSpotlightCard {
+  position: relative;
+  width: min(760px, 100%);
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 1.2rem;
+  padding: 1.25rem;
+  border-radius: 26px;
+  border: 1px solid color-mix(in srgb, var(--role-accent) 30%, rgba(255,255,255,0.08));
+  background: linear-gradient(180deg, rgba(10, 16, 27, 0.96), rgba(6, 9, 16, 0.98));
+  box-shadow: 0 22px 72px rgba(0, 0, 0, 0.42);
+  animation: spotlightIn 0.3s ease both;
+}
+
+.roleSpotlightClose {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(226, 232, 240, 0.82);
+  padding: 0.45rem 0.8rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.roleSpotlightImageFrame {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(12, 18, 30, 0.72), rgba(6, 10, 18, 0.92));
+}
+
+.roleSpotlightImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+
+.roleSpotlightMeta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.roleSpotlightEyebrow {
+  color: color-mix(in srgb, var(--role-accent) 70%, white 18%);
+}
+
+.roleSpotlightName {
+  margin: 0.7rem 0 0;
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.roleSpotlightTitle {
+  margin: 0.55rem 0 0;
+  color: rgba(203, 213, 225, 0.82);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.roleSpotlightText {
+  margin: 0.8rem 0 0;
+  color: rgba(148, 163, 184, 0.78);
+  line-height: 1.55;
+  font-size: 0.9rem;
+}
+
+.roleSpotlightList {
+  margin: 0.9rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.46rem;
+}
+
+.roleSpotlightItem {
+  position: relative;
+  padding-left: 1rem;
+  color: rgba(203, 213, 225, 0.82);
+  font-size: 0.83rem;
+  line-height: 1.5;
+}
+
+.roleSpotlightItem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--role-accent) 72%, white 10%);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--role-accent) 24%, transparent);
+  transform: translateY(-50%);
 }
 
 .workflowPanel {
   position: relative;
-  padding: 1.7rem;
-  border-radius: 30px;
-  background: linear-gradient(180deg, rgba(11, 16, 28, 0.95), rgba(5, 7, 14, 0.98));
+  width: min(1100px, 100%);
+  min-height: min(780px, calc(100vh - 8rem));
+  margin: 0 auto;
+  aspect-ratio: auto;
+  padding: 1.35rem;
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 18% 16%, color-mix(in srgb, var(--workflow-accent) 18%, transparent), transparent 30%),
+    radial-gradient(circle at 82% 84%, rgba(99, 102, 241, 0.12), transparent 32%),
+    linear-gradient(180deg, rgba(11, 16, 28, 0.95), rgba(5, 7, 14, 0.98));
   border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.workflowPanel::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: 33px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 18%, transparent 78%, rgba(103,232,249,0.03));
+  pointer-events: none;
+}
+
+.workflowPanelBody {
+  display: grid;
+  gap: 0.85rem;
+  animation: workflowSwap 0.28s ease both;
+}
+
+.workflowPanelTitle {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 2.7rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: #f8fbff;
+  text-shadow: 0 0 20px color-mix(in srgb, var(--workflow-accent) 14%, transparent);
+}
+
+.workflowSummary {
+  padding: 1rem 1.1rem 1.1rem;
+  border-radius: 20px;
+  border: 1px solid color-mix(in srgb, var(--workflow-accent) 18%, rgba(255, 255, 255, 0.08));
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--workflow-accent) 10%, rgba(255, 255, 255, 0.04)), rgba(255, 255, 255, 0.02));
+}
+
+.workflowSummaryFull {
+  width: 100%;
+}
+
+.workflowSummaryInner {
+  padding: 0.85rem 0.2rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.workflowInfoGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas:
+    "roles skills"
+    "outputs outputs";
+  gap: 0.9rem;
+  align-items: stretch;
+}
+
+.workflowBlock {
+  min-height: 0;
+  padding: 0.9rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.workflowRolesBlock {
+  grid-area: roles;
+  background:
+    linear-gradient(180deg, rgba(34, 211, 238, 0.1), rgba(255, 255, 255, 0.025));
+  border-color: rgba(34, 211, 238, 0.18);
+}
+
+.workflowSkillsBlock {
+  grid-area: skills;
+  background:
+    linear-gradient(180deg, rgba(99, 102, 241, 0.1), rgba(255, 255, 255, 0.025));
+  border-color: rgba(129, 140, 248, 0.18);
+}
+
+.workflowOutputsBlock {
+  grid-area: outputs;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--workflow-accent) 10%, rgba(255, 255, 255, 0.03)), rgba(255, 255, 255, 0.018));
+  border-color: color-mix(in srgb, var(--workflow-accent) 22%, rgba(255, 255, 255, 0.1));
 }
 
 .workflowTabs {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 0.72rem;
-  margin-bottom: 1.35rem;
+  gap: 0.65rem;
+  padding-bottom: 0.85rem;
 }
 
 .workflowTab {
@@ -261,12 +651,12 @@
   background: rgba(255, 255, 255, 0.03);
   color: rgba(226, 232, 240, 0.76);
   border-radius: 999px;
-  padding: 0.7rem 0.98rem;
-  font-size: 0.76rem;
+  padding: 0.62rem 0.9rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   cursor: pointer;
-  transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+  transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .workflowTab:hover {
@@ -275,61 +665,67 @@
 }
 
 .workflowTabActive {
-  border-color: var(--workflow-accent);
-  background: rgba(255, 255, 255, 0.06);
+  border-color: color-mix(in srgb, var(--workflow-accent) 60%, rgba(255,255,255,0.16));
+  background: color-mix(in srgb, var(--workflow-accent) 14%, rgba(255,255,255,0.03));
   color: white;
-}
-
-.workflowSummary {
-  margin-bottom: 1.4rem;
-  padding-bottom: 1.1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--workflow-accent) 14%, transparent);
 }
 
 .workflowTitle {
   margin: 0;
-  font-size: 1.58rem;
-  line-height: 1.1;
+  font-size: 1.38rem;
+  line-height: 1.08;
 }
 
 .workflowSummaryText {
-  margin: 0.75rem 0 0;
+  margin: 0.62rem 0 0;
   color: rgba(203, 213, 225, 0.74);
-  line-height: 1.6;
-  font-size: 0.98rem;
-}
-
-.workflowBlock + .workflowBlock {
-  margin-top: 1.35rem;
+  line-height: 1.5;
+  font-size: 0.92rem;
 }
 
 .blockHeader {
-  margin-bottom: 0.82rem;
+  margin-bottom: 0.72rem;
   color: var(--workflow-accent);
 }
 
 .activeRoleChips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.48rem;
 }
 
 .activeRoleChip {
   display: flex;
   align-items: center;
-  gap: 0.72rem;
+  gap: 0.45rem;
   min-width: 0;
-  padding: 0.6rem 0.72rem;
-  border-radius: 18px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0.52rem 0.62rem;
+  border-radius: 15px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.024));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: inherit;
+  text-align: left;
+  cursor: default;
+  transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.activeRoleChip:hover {
+  transform: none;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.activeRoleChipSelected {
+  border-color: color-mix(in srgb, var(--role-accent) 46%, rgba(255,255,255,0.12));
+  background: color-mix(in srgb, var(--role-accent) 10%, rgba(255,255,255,0.03));
+  box-shadow: 0 0 18px color-mix(in srgb, var(--role-accent) 14%, transparent);
 }
 
 .activeRoleThumb {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   object-fit: cover;
-  border-radius: 14px;
+  border-radius: 12px;
   flex-shrink: 0;
 }
 
@@ -340,13 +736,13 @@
 }
 
 .activeRoleName {
-  font-size: 0.8rem;
+  font-size: 0.76rem;
   font-weight: 700;
   color: white;
 }
 
 .activeRoleTitle {
-  font-size: 0.64rem;
+  font-size: 0.56rem;
   color: rgba(148, 163, 184, 0.72);
 }
 
@@ -355,47 +751,270 @@
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 0.7rem;
+  gap: 0.46rem;
+  align-content: start;
 }
 
 .skillItem {
   position: relative;
-  padding: 0.75rem 0.9rem 0.75rem 1.7rem;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.025);
-  color: rgba(226, 232, 240, 0.84);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0.62rem 0.78rem 0.62rem 1.45rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(203, 213, 225, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.045);
+  font-size: 0.88rem;
 }
 
 .skillItem::before {
   content: "";
   position: absolute;
-  left: 0.78rem;
+  left: 0.62rem;
   top: 50%;
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--workflow-accent);
   transform: translateY(-50%);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--workflow-accent) 28%, transparent);
 }
 
 .outputGrid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.78rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.48rem;
 }
 
 .outputCard {
-  min-height: 92px;
-  padding: 1rem;
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
-  color: rgba(248, 250, 252, 0.88);
+  min-height: 54px;
+  padding: 0.62rem 0.68rem;
+  border-radius: 13px;
+  border: 1px solid color-mix(in srgb, var(--workflow-accent) 18%, rgba(255, 255, 255, 0.1));
+  background: linear-gradient(180deg, color-mix(in srgb, var(--workflow-accent) 10%, rgba(255, 255, 255, 0.055)), rgba(255, 255, 255, 0.02));
+  color: rgba(248, 250, 252, 0.9);
+  font-size: 0.76rem;
   font-weight: 600;
-  line-height: 1.45;
+  line-height: 1.16;
   display: flex;
   align-items: flex-start;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.outputCard:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--workflow-accent) 22%, rgba(255,255,255,0.1));
+}
+
+.workflowAccordion {
+  display: grid;
+  gap: 0.72rem;
+}
+
+.accordionItem {
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--workflow-accent) 10%, rgba(255, 255, 255, 0.04)), rgba(255, 255, 255, 0.018));
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.26);
+  overflow: hidden;
+}
+
+.accordionItemOpen {
+  border-color: color-mix(in srgb, var(--workflow-accent) 28%, rgba(255, 255, 255, 0.12));
+}
+
+.accordionTrigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.05rem;
+  border: 0;
+  background: transparent;
+  color: #f8fbff;
+  text-align: left;
+  cursor: pointer;
+}
+
+.accordionTriggerLabel {
+  font-size: 0.98rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.accordionTriggerIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--workflow-accent) 16%, rgba(255, 255, 255, 0.04));
+  border: 1px solid color-mix(in srgb, var(--workflow-accent) 26%, rgba(255, 255, 255, 0.08));
+  color: color-mix(in srgb, var(--workflow-accent) 70%, white 20%);
+  flex-shrink: 0;
+}
+
+.accordionBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.72rem;
+  padding: 0 1rem 1rem;
+}
+
+.accordionSummary {
+  margin: 0;
+  width: 100%;
+  color: rgba(203, 213, 225, 0.76);
+  line-height: 1.55;
+  font-size: 0.92rem;
+}
+
+.accordionOutputsBlock {
+  width: 100%;
+}
+
+.accordionBody > * {
+  grid-column: 1 / -1;
+}
+
+.accordionBody .workflowBlock {
+  grid-area: auto;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+}
+
+@keyframes hubOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hubPulse {
+  from {
+    opacity: 0.5;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes engineCorePulse {
+  0%,
+  100% {
+    box-shadow: 0 0 64px rgba(99, 102, 241, 0.22), inset 0 0 42px rgba(34, 211, 238, 0.1);
+    transform: scale(1);
+  }
+
+  50% {
+    box-shadow: 0 0 78px rgba(99, 102, 241, 0.3), inset 0 0 54px rgba(34, 211, 238, 0.16);
+    transform: scale(1.03);
+  }
+}
+
+@keyframes workflowSwap {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes roleHintPulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.92);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.14);
+  }
+}
+
+@keyframes thumbFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes thumbGlowPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 18px 34px rgba(0, 0, 0, 0.35),
+      0 0 12px rgba(103, 232, 249, 0.08),
+      0 0 14px color-mix(in srgb, var(--role-accent) 14%, transparent);
+  }
+
+  50% {
+    box-shadow:
+      0 22px 38px rgba(0, 0, 0, 0.4),
+      0 0 18px rgba(103, 232, 249, 0.12),
+      0 0 30px color-mix(in srgb, var(--role-accent) 28%, transparent);
+  }
+}
+
+@keyframes thumbAttentionLoop {
+  0%,
+  12%,
+  100% {
+    box-shadow:
+      0 18px 34px rgba(0, 0, 0, 0.35),
+      0 0 12px rgba(103, 232, 249, 0.08),
+      0 0 16px color-mix(in srgb, var(--role-accent) 14%, transparent);
+  }
+
+  4%,
+  8% {
+    box-shadow:
+      0 22px 38px rgba(0, 0, 0, 0.4),
+      0 0 22px rgba(103, 232, 249, 0.14),
+      0 0 34px color-mix(in srgb, var(--role-accent) 34%, transparent);
+  }
+}
+
+@keyframes thumbSheen {
+  0%,
+  100% {
+    opacity: 0.82;
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: rotate(4deg) scale(1.02);
+  }
+}
+
+@keyframes spotlightIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @media (max-width: 1200px) {
@@ -403,17 +1022,49 @@
     width: min(1240px, calc(100vw - 72px));
   }
 
-  .sectionBody {
-    grid-template-columns: 1fr;
+  .section {
+    min-height: auto;
+  }
+
+  .roleMapShell,
+  .workflowPanel {
+    max-width: 980px;
+    min-height: auto;
+    margin: 0 auto;
   }
 
   .roleMap {
-    min-height: 640px;
+    min-height: 680px;
+    aspect-ratio: auto;
+  }
+
+  .workflowPanel {
+    min-height: 680px;
+    aspect-ratio: auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .workflowInfoGrid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "roles"
+      "skills"
+      "outputs";
+  }
+
+  .activeRoleChips {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .outputGrid {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (max-width: 760px) {
   .section {
+    min-height: auto;
     padding: 5rem 0 5.25rem;
   }
 
@@ -425,12 +1076,46 @@
     margin-bottom: 2.6rem;
   }
 
+  .sectionTitle {
+    white-space: normal;
+  }
+
+  .sectionIconWrap {
+    width: 58px;
+    height: 58px;
+    margin-bottom: 0.85rem;
+  }
+
+  .sectionBody {
+    gap: 2rem;
+  }
+
   .panelSupport {
     font-size: 0.92rem;
   }
 
+  .roleMapShell {
+    min-height: auto;
+  }
+
+  .roleExpandHint {
+    margin-bottom: 0.9rem;
+    padding: 0.46rem 0.72rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+  }
+
+  .roleExpandHintDesktop {
+    display: none;
+  }
+
+  .roleExpandHintMobile {
+    display: inline;
+  }
+
   .roleMap {
-    min-height: 560px;
+    min-height: 620px;
+    aspect-ratio: auto;
   }
 
   .solutionHub {
@@ -447,19 +1132,20 @@
   }
 
   .roleNode {
-    width: 92px;
+    width: 112px;
     left: calc(var(--role-mobile-x) * 1%) !important;
     top: calc(var(--role-mobile-y) * 1%) !important;
   }
 
   .roleThumbFrame {
-    width: 60px;
-    height: 60px;
-    border-radius: 18px;
+    width: 76px;
+    height: 76px;
+    border-radius: 24px;
+    padding: 5px;
   }
 
   .roleThumb {
-    border-radius: 14px;
+    border-radius: 16px;
   }
 
   .roleName {
@@ -470,34 +1156,88 @@
     display: none;
   }
 
+  .roleSpotlight {
+    position: fixed;
+    inset: 0;
+    padding: 0.8rem;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    z-index: 120;
+  }
+
+  .roleSpotlightCard {
+    grid-template-columns: 1fr;
+    width: min(420px, 100%);
+    max-height: calc(100svh - 1.6rem);
+    padding: 3.2rem 0.95rem 0.95rem;
+    overflow-y: auto;
+  }
+
+  .roleSpotlightImageFrame {
+    min-height: 210px;
+    max-height: 250px;
+  }
+
+  .roleSpotlightImage {
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .roleSpotlightClose {
+    top: 0.7rem;
+    right: 0.7rem;
+  }
+
+  .roleSpotlightMeta {
+    padding-bottom: 0.15rem;
+  }
+
+  .roleSpotlightList {
+    gap: 0.5rem;
+  }
+
   .workflowPanel {
+    width: 100%;
+    min-height: auto;
+    aspect-ratio: auto;
     padding: 1.2rem;
     border-radius: 24px;
   }
 
-  .workflowTabs {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding-bottom: 0.15rem;
-  }
-
-  .workflowTabs::-webkit-scrollbar {
-    display: none;
-  }
-
-  .workflowTab {
-    white-space: nowrap;
-  }
-
-  .activeRoleChips {
-    gap: 0.55rem;
-  }
-
-  .activeRoleChip {
-    flex: 1 1 calc(50% - 0.55rem);
-  }
-
+  .workflowInfoGrid,
+  .activeRoleChips,
   .outputGrid {
     grid-template-columns: 1fr;
   }
+
+  .workflowSummaryInner {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .workflowAccordion {
+    gap: 0.85rem;
+  }
+
+  .accordionBody {
+    gap: 0.8rem;
+    padding: 0 0.95rem 0.95rem;
+  }
+
+  .accordionSummary {
+    font-size: 0.94rem;
+    line-height: 1.6;
+  }
+
+  .accordionBody .workflowBlock {
+    padding: 0.88rem;
+  }
 }
+
+
+
+
+
+
+
